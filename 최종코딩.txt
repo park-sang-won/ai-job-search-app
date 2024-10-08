@@ -1,0 +1,90 @@
+#include <stdio.h>
+int KT();
+int SKT();
+int U();
+
+int main()
+{
+   char i[5];
+   printf("통신사를 선택해주세요\n");
+   printf("KT\nSKT\nU+\n");
+   scanf("%s", i );
+   
+   if(i[0] == 'k' && i[1] == 't')
+   {
+   	printf("KT를선택하셨습니다\n");
+   	KT();
+   }
+   else if(i[0] == 's' && i[1] == 'k')
+   {
+   	printf("SKT를 선택하셨습니다\n");
+   	SKT();
+   }
+   else if(i[0] == 'u')
+   {
+   	printf("U+를 선택하셨습니다\n");
+   	U();
+   }
+   else if(i[0] == 'k')
+   {
+   	printf("KT를 선택하셨습니다\n");
+   	KT();
+   }
+   else if(i[0] == 's')
+   {
+   	printf("SKT를 선택하셨습니다\n");
+   	SKT();
+   }
+   else
+   {
+   	printf("잘못누르셨습니다\n");
+   }
+}
+   
+   int KT()
+   {
+   	int i;
+	printf("어떤 방식으로 개통하시겠습니까? 1은 공시지원금, 2는 선택약정 선택\n");
+   	scanf("%d", &i);
+   	if(i==1)
+   	{
+   		printf("공시지원금");
+	   }
+	else if(i==2)
+	{
+		printf("선택약정");
+	   }   
+   	
+   }
+   
+   int SKT()
+   {
+   	int i;
+   	printf("어떤 방식으로 개통하시겠습니까? 1은 공시지원금, 2는 선택약정 선택\n");
+   	scanf("%d", &i);
+   	if(i==1)
+   	{
+   		printf("공시지원금");
+	   }
+	else if(i==2)
+	{
+		printf("선택약정");
+	   }   
+   	
+   }
+   
+   int U()
+   {
+   	int i;
+   	printf("어떤 방식으로 개통하시겠습니까? 1은 공시지원금, 2는 선택약정 선택\n");
+   	scanf("%d", &i);
+   	if(i==1)
+   	{
+   		printf("공시지원금");
+	   }
+	else if(i==2)
+	{
+		printf("선택약정");
+	   }   
+   	
+   }
