@@ -1,10 +1,27 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, Image, Alert } from 'react-native';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from './firebaseConfig'; // Adjust the path based on your file structure
 
 export default function SignupScreen({ navigation }) {
-  const handleSignup = () => {
-    // 회원가입 성공 로직을 여기에 추가
-    navigation.navigate('ProfileInput'); // 회원가입 성공 시 이력정보 입력 화면으로 이동
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  
+  const handleSignup = async() => {
+
+    try{
+      if(!email || !password){
+        Alert.alert('아이디와 비밀번호를 입력해주세요.');
+        return;
+    }
+    const userCredential = await createUserWithEmailAndPassword(auth , email, password);
+      Alert.alert('입력 오류','아이디와 비밀번호를 입력해주세요.');
+      console.log(userCredential.user, "회원가입 성공");
+      navigation.navigate('ProfileInput'); // 회원가입 성공 시 이력정보 입력 화면으로 이동 
+    } catch(error){
+        Alert.alert('회원가입 실패', error.message);
+    }
   };
 
   return (
@@ -23,7 +40,11 @@ export default function SignupScreen({ navigation }) {
       {/* 폼 컨테이너 */}
       <View style={styles.formContainer}>
         <View style={[styles.inputRow, styles.inputContainer]}>
-          <TextInput style={styles.input} placeholder="아이디" placeholderTextColor="#B0B0B0" />
+          <TextInput 
+            style={styles.input}
+            onChangeText={setEmail} 
+            placeholder="아이디" 
+            placeholderTextColor="#B0B0B0" />
           <TouchableOpacity style={styles.checkButton}>
             <Text style={styles.checkButtonText}>확인</Text>
           </TouchableOpacity>
@@ -33,6 +54,7 @@ export default function SignupScreen({ navigation }) {
             style={styles.input}
             placeholder="비밀번호"
             placeholderTextColor="#B0B0B0"
+            onChangeText={setPassword}
             secureTextEntry
           />
         </View>
